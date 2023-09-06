@@ -6,6 +6,13 @@ function deObjetoAarray(objeto) {
    // Estos elementos debe ser cada par clave:valor del objeto recibido.
    // [EJEMPLO]: {D: 1, B: 2, C: 3} ---> [['D', 1], ['B', 2], ['C', 3]].
    // Tu código:
+   const array = []; 
+   for (let key in objeto) { 
+      array.push([key, objeto[key]]); 
+   } 
+   return array; 
+
+   
 }
 
 function numberOfCharacters(string) {
@@ -14,6 +21,29 @@ function numberOfCharacters(string) {
    // Las letras deben estar en orden alfabético.
    // [EJEMPLO]: "adsjfdsfsfjsdjfhacabcsbajda" ---> { a: 5, b: 2, c: 2, d: 4, f: 4, h:1, j: 4, s: 5 }
    // Tu código:
+   const charCount = {};
+  
+      for (let i = 0; i < string.length; i++) {
+     const char = string[i];
+     
+    
+     if (charCount[char]) {
+       charCount[char]++;
+     } else {
+       
+       charCount[char] = 1;
+     }
+   }
+         const sortedChars = Object.keys(charCount).sort();
+   
+   const result = {};
+   for (let i = 0; i < sortedChars.length; i++) {
+     const char = sortedChars[i];
+     result[char] = charCount[char];
+   }
+   
+   return result;
+
 }
 
 function capToFront(string) {
@@ -21,27 +51,77 @@ function capToFront(string) {
    // Debes enviar todas las letras en mayúscula al comienzo del string.
    // Retornar el string.
    // [EJEMPLO]: soyHENRY ---> HENRYsoy
-   // Tu código:
-}
+   //
+      let uppercase = "";
+      let lowercase = "";
+    
+      for (let i = 0; i < string.length; i++) {
+        if (string[i] === string[i].toUpperCase()) {
+          uppercase += string[i];
+        } else {
+          lowercase += string[i];
+        }
+      }
+    
+      return uppercase + lowercase;
+    }
+    
+    // Ejemplo de uso:
+    const resultado = capToFront("soyHENRY");
+    console.log(resultado); // HENRYsoy
+
 
 function asAmirror(frase) {
    // Recibes una frase. Tu tarea es retornar un nuevo string en el que el orden de las palabras sea el mismo.
    // La diferencia es que cada palabra estará escrita al inverso.
    // [EJEMPLO]: "The Henry Challenge is close!"  ---> "ehT yrneH egnellahC si !esolc"
    // Tu código:
-}
+   // let caracteres = frase.split("")
+   // let invertidas = caracteres.reverse()
+   
+   // let frasei= invertidas.join("")
+   // fraseii = frasei.reverse("")
+   // return fraseii
+   // const invert = frase.split("").reverse(-1).join("");
+   // return invert
+   
+      var palabras = frase.split(" ");
+      var palabrasInvertidas = palabras.map(function(palabra) {
+        return palabra.split("").reverse().join("");
+      });
+      var fraseInvertida = palabrasInvertidas.join(" ");
+      return fraseInvertida;
+    }
+    
+   
+
 
 function capicua(numero) {
    // Si el número que recibes es capicúa debes retornar el string: "Es capicua".
    // Caso contrario: "No es capicua".
    // Tu código:
+   const numeroString = numero.toString();
+   const numeroInvertido = numeroString.split("").reverse().join("");
+      if (numeroString === numeroInvertido) {
+     return "Es capicua";
+   } else {
+     return "No es capicua";
+   }
 }
 
 function deleteAbc(string) {
    // Tu tarea es eliminar las letras "a", "b" y "c" del string recibido.
    // Retorna el string sin estas letras.
    // Tu código:
+   
+
+  // Reemplazar las letras "a", "b" y "c" por una cadena vacía
+  const nuevoStr = string.replace(/[abc]/g, "");
+
+  // Devolver el nuevo string sin las letras "a", "b" y "c"
+  return nuevoStr;
 }
+
 
 function sortArray(arrayOfStrings) {
    // Recibes un arreglo de strings.
@@ -49,6 +129,9 @@ function sortArray(arrayOfStrings) {
    // de la longitud de cada string.
    // [EJEMPLO]: ["You", "are", "beautiful", "looking"]  ---> [“You", "are", "looking", "beautiful"]
    // Tu código:
+   return arrayOfStrings.sort(function(a, b) {
+      return a.length - b.length;
+    });
 }
 
 function buscoInterseccion(array1, array2) {
@@ -58,6 +141,15 @@ function buscoInterseccion(array1, array2) {
    // Si no tienen elementos en común, retornar un arreglo vacío.
    // [PISTA]: los arreglos no necesariamente tienen la misma longitud.
    // Tu código:
+
+   const interseccion = [];
+   for(let i = 0; i < array1.length; i++)
+    {for(let j = 0; j < array2.length; j++) 
+      {if(array1[i] === array2[j])
+       {interseccion.push(array1[i]); }
+     }
+   }
+   return interseccion;
 }
 
 /*⚠️ NO MODIFIQUES NADA DEBAJO DE ESTO ⚠️*/
